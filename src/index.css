@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --brand-purple: #9333ea;
+    --brand-purple-glow: rgba(147, 51, 234, 0.45);
+    --brand-navy: #090d16;
+    --brand-navy-card: #0f172a;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #070a12;
+    color: #f1f5f9;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Custom hide scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Video snap feed container */
+.feed-snap-container {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.feed-snap-item {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* Spinning vinyl animation */
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 6s linear infinite;
+}
+
+/* Heart burst animation for double-tap */
+@keyframes heartFloat {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1.2) translateY(-10px);
+  }
+  70% {
+    opacity: 0.9;
+    transform: scale(1) translateY(-40px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.7) translateY(-80px);
+  }
+}
+
+.animate-heart-float {
+  animation: heartFloat 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Subtle pulse glow */
+.purple-neon-shadow {
+  box-shadow: 0 0 25px -4px rgba(168, 85, 247, 0.4), 0 0 10px -2px rgba(139, 92, 246, 0.3);
+}
+
+.purple-button-glow:hover {
+  box-shadow: 0 0 20px 0 rgba(168, 85, 247, 0.55);
+}

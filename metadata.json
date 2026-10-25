@@ -1,0 +1,6 @@
+{
+  "name": "LikeTop",
+  "description": "Next-generation short-form video platform with AI creative studio, high-level encryption, personalized discovery feed, and viral engagement cloud storage rewards.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
