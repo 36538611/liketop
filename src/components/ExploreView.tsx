@@ -51,7 +51,7 @@ export const ExploreView: React.FC<ExploreViewProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-3 md:p-6 overflow-y-auto no-scrollbar">
-      <div className="relative w-full max-w-3xl h-[88vh] bg-[#090e1c] border border-purple-500/30 rounded-3xl shadow-2xl flex flex-col overflow-hidden">
+      <div className="relative w-full max-w-3xl h-[88vh] bg-[#0C0E15] border border-[#D49B8B]/30 rounded-3xl shadow-2xl flex flex-col overflow-hidden">
         {/* Search Header */}
         <div className="p-4 md:p-5 border-b border-slate-800 bg-slate-950/60 flex items-center gap-3">
           <div className="relative flex-1">
@@ -61,7 +61,7 @@ export const ExploreView: React.FC<ExploreViewProps> = ({
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search creators, sounds, #hashtags, AI filters..."
-              className="w-full h-10 pl-10 pr-4 rounded-xl bg-slate-900 border border-slate-800 text-xs md:text-sm text-white placeholder-slate-500 focus:outline-hidden focus:border-purple-500"
+              className="w-full h-10 pl-10 pr-4 rounded-xl bg-slate-900 border border-slate-800 text-xs md:text-sm text-white placeholder-slate-500 focus:outline-hidden focus:border-[#D49B8B]"
             />
           </div>
           <button
@@ -80,7 +80,7 @@ export const ExploreView: React.FC<ExploreViewProps> = ({
               onClick={() => setSelectedCategory(c.id)}
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${
                 selectedCategory === c.id
-                  ? 'bg-purple-600 text-white shadow-xs'
+                  ? 'bg-gradient-to-r from-[#D49B8B] to-[#C27E6E] text-[#0A0C10] font-bold shadow-xs'
                   : 'bg-slate-900 border border-slate-800 text-slate-400 hover:text-white'
               }`}
             >
@@ -95,7 +95,7 @@ export const ExploreView: React.FC<ExploreViewProps> = ({
           {!searchQuery && (
             <div>
               <div className="flex items-center gap-2 mb-3">
-                <TrendingUp className="w-4 h-4 text-purple-400" />
+                <TrendingUp className="w-4 h-4 text-[#D49B8B]" />
                 <h3 className="text-xs font-bold text-white uppercase tracking-wider">Trending Hashtags</h3>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -106,10 +106,10 @@ export const ExploreView: React.FC<ExploreViewProps> = ({
                       onSelectTag(item.tag);
                       onClose();
                     }}
-                    className="p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-purple-500/40 text-left transition-all group flex items-start justify-between"
+                    className="p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-[#D49B8B]/40 text-left transition-all group flex items-start justify-between"
                   >
                     <div>
-                      <span className="text-sm font-bold text-purple-300 group-hover:text-purple-200 block">
+                      <span className="text-sm font-bold text-[#F2C4B7] group-hover:text-[#D49B8B] block">
                         {item.tag}
                       </span>
                       <span className="text-xs text-slate-400 line-clamp-1">{item.desc}</span>
@@ -127,7 +127,7 @@ export const ExploreView: React.FC<ExploreViewProps> = ({
               <h3 className="text-xs font-bold text-white uppercase tracking-wider">
                 {searchQuery ? `Search Results (${filteredPosts.length})` : 'Personalized Discovery For You'}
               </h3>
-              <span className="text-xs text-purple-400">Curated by LikeTop Algorithm</span>
+              <span className="text-xs text-[#D49B8B]">Curated by LikeTop Algorithm</span>
             </div>
 
             {filteredPosts.length === 0 ? (
@@ -154,7 +154,7 @@ export const ExploreView: React.FC<ExploreViewProps> = ({
                       <span className="text-xs font-bold line-clamp-2 leading-tight drop-shadow-xs">
                         {post.caption}
                       </span>
-                      <div className="flex items-center gap-1.5 mt-1.5 text-[11px] text-purple-300">
+                      <div className="flex items-center gap-1.5 mt-1.5 text-[11px] text-[#F2C4B7]">
                         <img
                           src={post.author.avatar}
                           alt={post.author.username}

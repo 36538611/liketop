@@ -44,7 +44,7 @@ export const VaultSecurityModal: React.FC<VaultSecurityModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 overflow-y-auto no-scrollbar">
-      <div className="relative w-full max-w-lg bg-[#090e1c] border border-purple-500/30 rounded-3xl shadow-2xl overflow-hidden p-6">
+      <div className="relative w-full max-w-lg bg-[#0C0E15] border border-[#D49B8B]/30 rounded-3xl shadow-2xl overflow-hidden p-6">
         {/* Close Button */}
         <button
           onClick={onClose}
@@ -55,8 +55,8 @@ export const VaultSecurityModal: React.FC<VaultSecurityModalProps> = ({
 
         {/* Title */}
         <div className="flex items-center gap-3 mb-5">
-          <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-purple-600 to-indigo-600 flex items-center justify-center shadow-md">
-            <HardDrive className="w-5 h-5 text-white" />
+          <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-[#D49B8B] to-[#C27E6E] flex items-center justify-center shadow-md text-[#0A0C10]">
+            <HardDrive className="w-5 h-5 text-[#0A0C10]" />
           </div>
           <div>
             <h2 className="text-lg font-bold text-white">LikeTop Cloud Vault & Security</h2>
@@ -69,7 +69,7 @@ export const VaultSecurityModal: React.FC<VaultSecurityModalProps> = ({
           <button
             onClick={() => setActiveTab('storage')}
             className={`flex-1 py-1.5 text-xs font-semibold rounded-lg flex items-center justify-center gap-2 transition-all ${
-              activeTab === 'storage' ? 'bg-purple-600 text-white shadow-xs' : 'text-slate-400 hover:text-white'
+              activeTab === 'storage' ? 'bg-gradient-to-r from-[#D49B8B] to-[#C27E6E] text-[#0A0C10] font-bold shadow-xs' : 'text-slate-400 hover:text-white'
             }`}
           >
             <HardDrive className="w-3.5 h-3.5" />
@@ -78,7 +78,7 @@ export const VaultSecurityModal: React.FC<VaultSecurityModalProps> = ({
           <button
             onClick={() => setActiveTab('security')}
             className={`flex-1 py-1.5 text-xs font-semibold rounded-lg flex items-center justify-center gap-2 transition-all ${
-              activeTab === 'security' ? 'bg-purple-600 text-white shadow-xs' : 'text-slate-400 hover:text-white'
+              activeTab === 'security' ? 'bg-gradient-to-r from-[#D49B8B] to-[#C27E6E] text-[#0A0C10] font-bold shadow-xs' : 'text-slate-400 hover:text-white'
             }`}
           >
             <ShieldCheck className="w-3.5 h-3.5" />
@@ -89,10 +89,10 @@ export const VaultSecurityModal: React.FC<VaultSecurityModalProps> = ({
         {activeTab === 'storage' ? (
           <div className="space-y-5">
             {/* Storage Progress Bar */}
-            <div className="p-4 rounded-2xl bg-slate-950/80 border border-purple-500/30">
+            <div className="p-4 rounded-2xl bg-slate-950/80 border border-[#D49B8B]/30">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs font-bold text-white">Total Storage Capacity</span>
-                <span className="text-sm font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-fuchsia-300 tabular-nums">
+                <span className="text-sm font-extrabold text-[#F2C4B7] tabular-nums">
                   {totalMaxGB} GB
                 </span>
               </div>
@@ -100,14 +100,14 @@ export const VaultSecurityModal: React.FC<VaultSecurityModalProps> = ({
               {/* Progress bar */}
               <div className="h-3 w-full bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-800">
                 <div
-                  className="h-full bg-gradient-to-r from-purple-500 to-fuchsia-500 rounded-full transition-all duration-500"
+                  className="h-full bg-gradient-to-r from-[#D49B8B] to-[#E8B4A6] rounded-full transition-all duration-500 shadow-sm"
                   style={{ width: `${usedPercent}%` }}
                 />
               </div>
 
               <div className="flex items-center justify-between mt-2 text-[11px] text-slate-400">
                 <span>{usedGB} GB Used ({usedPercent}%)</span>
-                <span className="text-purple-300 font-semibold font-mono">+{bonusMB} MB Bonus Earned</span>
+                <span className="text-[#F2C4B7] font-semibold font-mono">+{bonusMB} MB Bonus Earned</span>
               </div>
             </div>
 
@@ -118,10 +118,10 @@ export const VaultSecurityModal: React.FC<VaultSecurityModalProps> = ({
                 <span className="text-xs font-bold text-slate-200">5.0 GB</span>
                 <span className="text-[9px] text-slate-500 block mt-0.5">Free forever</span>
               </div>
-              <div className="p-3 rounded-xl bg-purple-950/40 border border-purple-500/30">
-                <span className="text-[10px] text-purple-300 block">Share Bonuses</span>
-                <span className="text-xs font-bold text-purple-200 tabular-nums">+{bonusMB} MB</span>
-                <span className="text-[9px] text-purple-400 block mt-0.5">+500MB/share</span>
+              <div className="p-3 rounded-xl bg-[#D49B8B]/10 border border-[#D49B8B]/30">
+                <span className="text-[10px] text-[#F2C4B7] block">Share Bonuses</span>
+                <span className="text-xs font-bold text-[#F2C4B7] tabular-nums">+{bonusMB} MB</span>
+                <span className="text-[9px] text-[#D49B8B] block mt-0.5">+500MB/share</span>
               </div>
               <div className="p-3 rounded-xl bg-slate-950 border border-slate-800/80">
                 <span className="text-[10px] text-slate-400 block">Max Vault Cap</span>
@@ -131,10 +131,10 @@ export const VaultSecurityModal: React.FC<VaultSecurityModalProps> = ({
             </div>
 
             {/* Earn More Action Card */}
-            <div className="p-4 rounded-2xl bg-gradient-to-r from-purple-950/70 via-indigo-950/70 to-purple-950/70 border border-purple-500/40 flex items-center justify-between gap-3">
+            <div className="p-4 rounded-2xl bg-gradient-to-r from-[#D49B8B]/20 via-[#0C0E15] to-[#D49B8B]/20 border border-[#D49B8B]/40 flex items-center justify-between gap-3">
               <div>
                 <h4 className="text-xs font-bold text-white flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-purple-300" />
+                  <Sparkles className="w-3.5 h-3.5 text-[#D49B8B]" />
                   <span>Get +500 MB Bonus Right Now</span>
                 </h4>
                 <p className="text-[11px] text-slate-300 mt-0.5">Share any video to WhatsApp, X, or copy link</p>
@@ -144,7 +144,7 @@ export const VaultSecurityModal: React.FC<VaultSecurityModalProps> = ({
                   onClose();
                   onOpenShareModal();
                 }}
-                className="px-3.5 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold shrink-0 shadow-md transition-all active:scale-95"
+                className="px-3.5 py-2 rounded-xl bg-gradient-to-r from-[#D49B8B] to-[#C27E6E] hover:brightness-110 text-[#0A0C10] text-xs font-extrabold shrink-0 shadow-md shadow-[#D49B8B]/20 transition-all active:scale-95"
               >
                 Share & Earn
               </button>
@@ -153,7 +153,7 @@ export const VaultSecurityModal: React.FC<VaultSecurityModalProps> = ({
         ) : (
           <div className="space-y-4">
             {/* Cryptographic Protocols Audit */}
-            <div className="p-4 rounded-2xl bg-slate-950/80 border border-purple-500/30 space-y-3">
+            <div className="p-4 rounded-2xl bg-slate-950/80 border border-[#D49B8B]/30 space-y-3">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400" />
                 <span className="text-xs font-bold text-white">Cryptographic Standards Compliant</span>
@@ -161,15 +161,15 @@ export const VaultSecurityModal: React.FC<VaultSecurityModalProps> = ({
               <div className="space-y-2 text-xs">
                 <div className="flex items-center justify-between text-slate-300 border-b border-slate-800 pb-1.5">
                   <span className="text-slate-400">Cipher Algorithm:</span>
-                  <span className="font-mono text-purple-300 font-semibold">AES-256-GCM (Authenticated)</span>
+                  <span className="font-mono text-[#F2C4B7] font-semibold">AES-256-GCM (Authenticated)</span>
                 </div>
                 <div className="flex items-center justify-between text-slate-300 border-b border-slate-800 pb-1.5">
                   <span className="text-slate-400">Key Derivation:</span>
-                  <span className="font-mono text-purple-300 font-semibold">PBKDF2-SHA256 (100k rounds)</span>
+                  <span className="font-mono text-[#F2C4B7] font-semibold">PBKDF2-SHA256 (100k rounds)</span>
                 </div>
                 <div className="flex items-center justify-between text-slate-300 border-b border-slate-800 pb-1.5">
                   <span className="text-slate-400">Vector & Salt:</span>
-                  <span className="font-mono text-purple-300 font-semibold">96-bit IV / 128-bit Salt</span>
+                  <span className="font-mono text-[#F2C4B7] font-semibold">96-bit IV / 128-bit Salt</span>
                 </div>
                 <div className="flex items-center justify-between text-slate-300">
                   <span className="text-slate-400">Zero-Knowledge Vault:</span>

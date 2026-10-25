@@ -85,6 +85,32 @@ class SoundEngine {
     }, tempoMs);
   }
 
+  playIntroChime() {
+    try {
+      this.initContext();
+      if (!this.ctx) return;
+      const ctx = this.ctx;
+      const now = ctx.currentTime;
+      // Celestial harmonic sweep
+      const freqs = [220, 329.63, 440, 554.37, 659.25];
+      freqs.forEach((freq, idx) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, now + idx * 0.07);
+        gain.gain.setValueAtTime(0.001, now);
+        gain.gain.exponentialRampToValueAtTime(0.035, now + idx * 0.07 + 0.1);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 2.2);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now + idx * 0.07);
+        osc.stop(now + 2.3);
+      });
+    } catch {
+      // Audio context might be restricted before user gesture
+    }
+  }
+
   stop() {
     this.isPlaying = false;
     if (this.intervalId !== null) {

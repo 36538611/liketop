@@ -116,7 +116,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 overflow-y-auto no-scrollbar">
-      <div className="relative w-full max-w-md bg-[#090e1c] border border-purple-500/30 rounded-3xl shadow-2xl overflow-hidden p-6">
+      <div className="relative w-full max-w-md bg-[#0C0E15] border border-[#D49B8B]/30 rounded-3xl shadow-2xl overflow-hidden p-6">
         {/* Close Button */}
         <button
           onClick={onClose}
@@ -128,16 +128,16 @@ export const AuthModal: React.FC<AuthModalProps> = ({
         {/* Branding & Logo */}
         <div className="flex flex-col items-center text-center mb-5">
           <img
-            src="/src/assets/images/liketop_app_logo_1792906339915.jpg"
+            src="/assets/aistudio/1792908458825_0b55711a.jpg"
             alt="LikeTop Logo"
-            className="w-14 h-14 rounded-2xl object-cover ring-2 ring-purple-500/50 shadow-lg shadow-purple-600/30 mb-2"
+            className="w-14 h-14 rounded-2xl object-cover ring-2 ring-[#D49B8B]/50 shadow-lg shadow-[#D49B8B]/20 mb-2"
           />
           <h2 className="text-xl font-extrabold text-white">Join LikeTop</h2>
           <p className="text-xs text-slate-400 mt-0.5">Watch, create, and earn bonus cloud storage & algorithm reach</p>
         </div>
 
         {/* High-Level Encryption Indicator */}
-        <div className="mb-4 p-2.5 rounded-xl bg-purple-950/40 border border-purple-500/30 flex items-center gap-2.5 text-[11px] text-purple-200">
+        <div className="mb-4 p-2.5 rounded-xl bg-[#D49B8B]/10 border border-[#D49B8B]/30 flex items-center gap-2.5 text-[11px] text-[#F2C4B7]">
           <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
           <div className="flex-1">
             <span className="font-bold text-white">End-to-End Encrypted:</span> AES-256-GCM + PBKDF2 (100k rounds)
@@ -172,7 +172,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             type="button"
             onClick={() => setAuthMode('email')}
             className={`py-1.5 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 transition-all ${
-              authMode === 'email' ? 'bg-purple-600 text-white shadow-xs' : 'text-slate-400 hover:text-white'
+              authMode === 'email' ? 'bg-gradient-to-r from-[#D49B8B] to-[#C27E6E] text-[#0A0C10] font-bold shadow-xs' : 'text-slate-400 hover:text-white'
             }`}
           >
             <Mail className="w-3.5 h-3.5" />
@@ -182,7 +182,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             type="button"
             onClick={() => setAuthMode('phone')}
             className={`py-1.5 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 transition-all ${
-              authMode === 'phone' ? 'bg-purple-600 text-white shadow-xs' : 'text-slate-400 hover:text-white'
+              authMode === 'phone' ? 'bg-gradient-to-r from-[#D49B8B] to-[#C27E6E] text-[#0A0C10] font-bold shadow-xs' : 'text-slate-400 hover:text-white'
             }`}
           >
             <Phone className="w-3.5 h-3.5" />
@@ -192,7 +192,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             type="button"
             onClick={() => setAuthMode('username')}
             className={`py-1.5 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 transition-all ${
-              authMode === 'username' ? 'bg-purple-600 text-white shadow-xs' : 'text-slate-400 hover:text-white'
+              authMode === 'username' ? 'bg-gradient-to-r from-[#D49B8B] to-[#C27E6E] text-[#0A0C10] font-bold shadow-xs' : 'text-slate-400 hover:text-white'
             }`}
           >
             <UserIcon className="w-3.5 h-3.5" />
@@ -211,7 +211,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="name@example.com"
-                className="w-full h-10 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:outline-hidden focus:border-purple-500"
+                className="w-full h-10 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:outline-hidden focus:border-[#D49B8B]"
               />
             </div>
           )}
@@ -226,7 +226,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="+1 (555) 000-0000"
-                  className="w-full h-10 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:outline-hidden focus:border-purple-500"
+                  className="w-full h-10 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:outline-hidden focus:border-[#D49B8B]"
                 />
               </div>
               <div>
@@ -237,7 +237,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                   value={smsOtp}
                   onChange={(e) => setSmsOtp(e.target.value)}
                   placeholder="6-digit code"
-                  className="w-full h-10 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-purple-300 focus:outline-hidden focus:border-purple-500"
+                  className="w-full h-10 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-[#F2C4B7] focus:outline-hidden focus:border-[#D49B8B]"
                 />
               </div>
             </div>
@@ -254,7 +254,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   placeholder="unique_handle"
-                  className="w-full h-10 pl-7 pr-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:outline-hidden focus:border-purple-500"
+                  className="w-full h-10 pl-7 pr-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:outline-hidden focus:border-[#D49B8B]"
                 />
               </div>
             </div>
@@ -269,7 +269,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••••••"
-                className="w-full h-10 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:outline-hidden focus:border-purple-500"
+                className="w-full h-10 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:outline-hidden focus:border-[#D49B8B]"
               />
               <Lock className="w-4 h-4 text-slate-500 absolute right-3.5 top-1/2 -translate-y-1/2" />
             </div>
@@ -281,10 +281,10 @@ export const AuthModal: React.FC<AuthModalProps> = ({
               type="checkbox"
               checked={savePasswordToVault}
               onChange={(e) => setSavePasswordToVault(e.target.checked)}
-              className="mt-0.5 rounded border-slate-700 bg-slate-900 text-purple-600 focus:ring-purple-500"
+              className="mt-0.5 rounded border-slate-700 bg-slate-900 accent-[#D49B8B] text-[#D49B8B] focus:ring-[#D49B8B]"
             />
             <span className="text-[11px] text-slate-300">
-              Save password in <span className="text-purple-300 font-semibold">AES-256-GCM Secure Vault</span> on this device
+              Save password in <span className="text-[#F2C4B7] font-semibold">AES-256-GCM Secure Vault</span> on this device
             </span>
           </label>
 
@@ -296,14 +296,14 @@ export const AuthModal: React.FC<AuthModalProps> = ({
           <button
             type="submit"
             disabled={isProcessing}
-            className="w-full h-11 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-xs md:text-sm flex items-center justify-center gap-2 shadow-md shadow-purple-600/30 transition-all mt-3 active:scale-98"
+            className="w-full h-11 rounded-xl bg-gradient-to-r from-[#D49B8B] via-[#E8B4A6] to-[#C27E6E] hover:brightness-110 text-[#0A0C10] font-extrabold text-xs md:text-sm flex items-center justify-center gap-2 shadow-lg shadow-[#D49B8B]/25 transition-all mt-3 active:scale-98"
           >
             {isProcessing ? (
-              <Loader2 className="w-4 h-4 animate-spin" />
+              <Loader2 className="w-4 h-4 animate-spin text-[#0A0C10]" />
             ) : (
               <>
                 <span>Secure Log In / Register</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4 text-[#0A0C10]" />
               </>
             )}
           </button>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, Radio, HardDrive, ShieldCheck, Flame } from 'lucide-react';
+import { Search, Radio, HardDrive, ShieldCheck, Flame, Download } from 'lucide-react';
 import { User } from '../types';
 
 interface NavbarProps {
@@ -8,6 +8,8 @@ interface NavbarProps {
   onOpenSearch: () => void;
   onOpenVault: () => void;
   onOpenAuth: () => void;
+  onOpenDownloadApk: () => void;
+  onReplayLiveIntro?: () => void;
   user: User | null;
 }
 
@@ -17,6 +19,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenSearch,
   onOpenVault,
   onOpenAuth,
+  onOpenDownloadApk,
+  onReplayLiveIntro,
   user,
 }) => {
   const totalStorageGB = user
@@ -24,19 +28,32 @@ export const Navbar: React.FC<NavbarProps> = ({
     : '5.0';
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 h-14 md:h-16 px-4 md:px-8 flex items-center justify-between pointer-events-auto bg-gradient-to-b from-[#070a12]/95 via-[#070a12]/70 to-transparent backdrop-blur-xs">
-      {/* Zone 1: Single text element wordmark + glowing logo */}
+    <header className="fixed top-0 left-0 right-0 z-40 h-14 md:h-16 px-4 md:px-8 flex items-center justify-between pointer-events-auto bg-gradient-to-b from-[#08090D]/95 via-[#08090D]/75 to-transparent backdrop-blur-xs">
+      {/* Zone 1: Single text element wordmark + glowing logo + user requested subtitle */}
       <div className="flex items-center gap-2.5 shrink-0">
-        <a href="/" className="flex items-center gap-2 group">
-          <img
-            src="/src/assets/images/liketop_app_logo_1792906339915.jpg"
-            alt="LikeTop Logo"
-            className="w-8 h-8 md:w-9 md:h-9 rounded-xl object-cover ring-1 ring-purple-500/40 shadow-sm shadow-purple-500/20 group-hover:scale-105 transition-transform"
-          />
-          <span className="text-xl md:text-2xl font-extrabold tracking-tight text-white whitespace-nowrap">
-            Like<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-fuchsia-400">Top</span>
-          </span>
-        </a>
+        <button
+          onClick={onReplayLiveIntro}
+          className="flex items-center gap-2.5 group text-left cursor-pointer"
+          title="LikeTop: The future of the universe (Click to replay live logo intro)"
+        >
+          <div className="relative w-9 h-9 md:w-10 md:h-10 rounded-xl overflow-hidden ring-1 ring-[#D49B8B]/60 shadow-md shadow-[#D49B8B]/25 bg-[#12151E] group-hover:scale-105 transition-transform flex items-center justify-center p-0.5">
+            <img
+              src="/assets/aistudio/1792908458825_0b55711a.jpg"
+              alt="LikeTop Logo"
+              className="w-full h-full object-cover object-center rounded-lg"
+            />
+            {/* Live pulsing dot indicator */}
+            <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-[#F2C4B7] shadow-[0_0_6px_#D49B8B] animate-pulse" />
+          </div>
+          <div className="flex flex-col">
+            <span className="text-lg md:text-xl font-extrabold tracking-tight text-white whitespace-nowrap leading-none">
+              Like<span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D0C5] via-[#D89F8F] to-[#B87262]">Top</span>
+            </span>
+            <span className="hidden sm:block text-[9px] font-semibold tracking-wider uppercase text-[#D49B8B]/90 drop-shadow-xs mt-0.5">
+              The future of the universe
+            </span>
+          </div>
+        </button>
       </div>
 
       {/* Zone 2: Navigation Links / Feed Mode Switcher */}
@@ -62,7 +79,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         >
           Following
           {activeTab === 'following' && (
-            <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-purple-500 rounded-full" />
+            <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-[#D49B8B] rounded-full shadow-[0_0_8px_#D49B8B]" />
           )}
         </button>
 
@@ -76,7 +93,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         >
           For You
           {activeTab === 'foryou' && (
-            <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-gradient-to-r from-purple-400 to-fuchsia-400 rounded-full" />
+            <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-gradient-to-r from-[#F5D0C5] via-[#D89F8F] to-[#B87262] rounded-full shadow-[0_0_8px_#D49B8B]" />
           )}
         </button>
       </nav>
@@ -91,21 +108,31 @@ export const Navbar: React.FC<NavbarProps> = ({
           <Search className="w-5 h-5" />
         </button>
 
+        {/* Quick APK Download Action */}
+        <button
+          onClick={onOpenDownloadApk}
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-[#D49B8B] via-[#E8B4A6] to-[#C27E6E] hover:opacity-90 text-[#0A0C10] border border-[#F5D0C5]/40 text-xs font-extrabold transition-all shadow-sm shadow-[#D49B8B]/30"
+          title="Download LikeTop Android APK & App"
+        >
+          <Download className="w-3.5 h-3.5 stroke-[2.5]" />
+          <span className="whitespace-nowrap">Get APK</span>
+        </button>
+
         {/* Cloud Vault Storage & Encryption Badge */}
         <button
           onClick={onOpenVault}
-          className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900/80 hover:bg-slate-800/80 border border-purple-500/30 text-xs font-medium text-slate-200 transition-colors shadow-xs"
+          className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#12151E]/90 hover:bg-slate-800/80 border border-[#D49B8B]/30 text-xs font-medium text-slate-200 transition-colors shadow-xs"
           title="View Cloud Vault Storage and Cryptographic Security"
         >
-          <HardDrive className="w-3.5 h-3.5 text-purple-400" />
-          <span className="tabular-nums font-mono text-purple-300 font-semibold">{totalStorageGB} GB</span>
+          <HardDrive className="w-3.5 h-3.5 text-[#E8B4A6]" />
+          <span className="tabular-nums font-mono text-[#F2C4B7] font-semibold">{totalStorageGB} GB</span>
           <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 ml-0.5" />
         </button>
 
         {user ? (
           <button
             onClick={onOpenVault}
-            className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-purple-950/40 border border-purple-500/30 text-xs font-semibold text-purple-200 hover:bg-purple-900/40 transition-colors"
+            className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#221719] border border-[#D49B8B]/35 text-xs font-semibold text-[#F2C4B7] hover:bg-[#2e1d20] transition-colors"
           >
             <Flame className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
             <span className="tabular-nums">{user.streakDays}d Streak</span>
@@ -113,7 +140,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         ) : (
           <button
             onClick={onOpenAuth}
-            className="px-3.5 py-1.5 text-xs font-semibold text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 rounded-lg shadow-sm shadow-purple-600/30 transition-all whitespace-nowrap"
+            className="px-3.5 py-1.5 text-xs font-extrabold text-[#0A0C10] bg-gradient-to-r from-[#D49B8B] via-[#E8B4A6] to-[#C27E6E] hover:opacity-90 rounded-lg shadow-sm shadow-[#D49B8B]/30 transition-all whitespace-nowrap"
           >
             Log In
           </button>

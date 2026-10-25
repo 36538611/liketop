@@ -75,7 +75,7 @@ export const LiveStreamModal: React.FC<LiveStreamModalProps> = ({ isOpen, onClos
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-sm p-2 md:p-6">
-      <div className="relative w-full max-w-md h-[90vh] bg-slate-950 border border-purple-500/40 rounded-3xl overflow-hidden shadow-2xl flex flex-col">
+      <div className="relative w-full max-w-md h-[90vh] bg-slate-950 border border-[#D49B8B]/40 rounded-3xl overflow-hidden shadow-2xl flex flex-col">
         {/* Background Stream Visual Stage */}
         <div className="absolute inset-0 w-full h-full overflow-hidden bg-slate-950">
           <img
@@ -84,8 +84,8 @@ export const LiveStreamModal: React.FC<LiveStreamModalProps> = ({ isOpen, onClos
             className="w-full h-full object-cover filter contrast-125 brightness-90 animate-pulse duration-1000"
           />
           {/* Animated Concert Laser & Waveform Overlays */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#070a12] via-purple-950/40 to-transparent pointer-events-none" />
-          <div className="absolute top-1/4 left-0 right-0 h-40 bg-radial from-purple-500/20 via-transparent to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#08090D] via-[#D49B8B]/15 to-transparent pointer-events-none" />
+          <div className="absolute top-1/4 left-0 right-0 h-40 bg-radial from-[#D49B8B]/20 via-transparent to-transparent pointer-events-none" />
         </div>
 
         {/* Dark overlay scrim */}
@@ -107,7 +107,7 @@ export const LiveStreamModal: React.FC<LiveStreamModalProps> = ({ isOpen, onClos
                 </span>
               </div>
               <span className="text-[10px] text-slate-300 font-mono flex items-center gap-1">
-                <Users className="w-3 h-3 text-purple-400" />
+                <Users className="w-3 h-3 text-[#D49B8B]" />
                 <span>{viewersCount.toLocaleString()} viewers</span>
               </span>
             </div>
@@ -123,8 +123,8 @@ export const LiveStreamModal: React.FC<LiveStreamModalProps> = ({ isOpen, onClos
 
         {/* Gift Animation Popup */}
         {activeGift && (
-          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 z-30 p-3 rounded-2xl bg-purple-900/80 backdrop-blur-md border border-purple-400 text-center animate-bounce">
-            <Sparkles className="w-6 h-6 text-fuchsia-300 mx-auto mb-1" />
+          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 z-30 p-3 rounded-2xl bg-[#D49B8B]/30 backdrop-blur-md border border-[#D49B8B]/60 text-center animate-bounce">
+            <Sparkles className="w-6 h-6 text-[#F2C4B7] mx-auto mb-1" />
             <p className="text-xs font-bold text-white">Sent {activeGift} to Streamer!</p>
           </div>
         )}
@@ -136,7 +136,7 @@ export const LiveStreamModal: React.FC<LiveStreamModalProps> = ({ isOpen, onClos
               key={chat.id}
               className="self-start max-w-[85%] px-3 py-1.5 rounded-2xl bg-black/60 backdrop-blur-md border border-white/10 text-xs text-white"
             >
-              <span className="font-bold text-purple-300 mr-1.5">@{chat.user}:</span>
+              <span className="font-bold text-[#F2C4B7] mr-1.5">@{chat.user}:</span>
               <span>{chat.message}</span>
             </div>
           ))}
@@ -152,7 +152,7 @@ export const LiveStreamModal: React.FC<LiveStreamModalProps> = ({ isOpen, onClos
           </button>
           <button
             onClick={() => sendGift('Diamond 💎')}
-            className="flex items-center gap-1 px-2.5 py-1 rounded-xl bg-purple-950/80 border border-purple-500/40 text-xs text-purple-200 hover:bg-purple-900 transition-all"
+            className="flex items-center gap-1 px-2.5 py-1 rounded-xl bg-[#D49B8B]/20 border border-[#D49B8B]/40 text-xs text-[#F2C4B7] hover:bg-[#D49B8B]/30 transition-all"
           >
             <span>💎 LikeTop Diamond</span>
           </button>
@@ -160,9 +160,9 @@ export const LiveStreamModal: React.FC<LiveStreamModalProps> = ({ isOpen, onClos
             onClick={() => {
               setLikesCount((prev) => prev + 1);
             }}
-            className="w-9 h-9 rounded-full bg-rose-600/80 hover:bg-rose-500 flex items-center justify-center text-white shrink-0 active:scale-90 transition-transform shadow-md"
+            className="w-9 h-9 rounded-full bg-gradient-to-r from-[#D49B8B] to-[#C27E6E] text-[#0A0C10] flex items-center justify-center shrink-0 active:scale-90 transition-transform shadow-md"
           >
-            <Heart className="w-4 h-4 fill-white" />
+            <Heart className="w-4 h-4 fill-[#0A0C10] text-[#0A0C10]" />
           </button>
         </div>
 
@@ -173,11 +173,11 @@ export const LiveStreamModal: React.FC<LiveStreamModalProps> = ({ isOpen, onClos
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             placeholder="Say something to the stream..."
-            className="flex-1 h-9 px-3 rounded-xl bg-slate-900 border border-slate-700/60 text-xs text-white placeholder-slate-500 focus:outline-hidden focus:border-purple-500"
+            className="flex-1 h-9 px-3 rounded-xl bg-slate-900 border border-slate-700/60 text-xs text-white placeholder-slate-500 focus:outline-hidden focus:border-[#D49B8B]"
           />
           <button
             type="submit"
-            className="h-9 px-3.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold flex items-center justify-center gap-1"
+            className="h-9 px-3.5 rounded-xl bg-gradient-to-r from-[#D49B8B] to-[#C27E6E] hover:brightness-110 text-[#0A0C10] text-xs font-extrabold flex items-center justify-center gap-1 shadow-sm"
           >
             <Send className="w-3.5 h-3.5" />
           </button>

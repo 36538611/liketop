@@ -129,17 +129,17 @@ export const AIStudioModal: React.FC<AIStudioModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-3 md:p-6 overflow-y-auto no-scrollbar">
-      <div className="relative w-full max-w-4xl bg-[#090e1c] border border-purple-500/30 rounded-2xl md:rounded-3xl shadow-2xl overflow-hidden flex flex-col my-auto max-h-[92vh]">
+      <div className="relative w-full max-w-4xl bg-[#0C0E15] border border-[#D49B8B]/30 rounded-2xl md:rounded-3xl shadow-2xl overflow-hidden flex flex-col my-auto max-h-[92vh]">
         {/* Studio Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-950/60">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-purple-600 to-fuchsia-500 flex items-center justify-center shadow-xs">
-              <Wand2 className="w-4 h-4 text-white" />
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#D49B8B] to-[#C27E6E] flex items-center justify-center shadow-xs text-[#0A0C10]">
+              <Wand2 className="w-4 h-4 text-[#0A0C10]" />
             </div>
             <div>
               <h2 className="text-base font-bold text-white flex items-center gap-2">
                 <span>Free AI Creative Studio</span>
-                <span className="text-[10px] font-semibold text-purple-300 bg-purple-950/70 border border-purple-500/40 px-2 py-0.5 rounded-full">
+                <span className="text-[10px] font-semibold text-[#F2C4B7] bg-[#D49B8B]/15 border border-[#D49B8B]/40 px-2 py-0.5 rounded-full">
                   100% Free
                 </span>
               </h2>
@@ -158,7 +158,7 @@ export const AIStudioModal: React.FC<AIStudioModalProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 p-6 overflow-y-auto no-scrollbar">
           {/* Left: Video / Picture Live Canvas Preview */}
           <div className="lg:col-span-5 flex flex-col items-center">
-            <div className="relative w-full max-w-[280px] aspect-[9/16] rounded-2xl overflow-hidden bg-slate-950 border border-purple-500/30 shadow-xl group">
+            <div className="relative w-full max-w-[280px] aspect-[9/16] rounded-2xl overflow-hidden bg-slate-950 border border-[#D49B8B]/30 shadow-xl group">
               {customFileUrl ? (
                 <video
                   src={customFileUrl}
@@ -181,8 +181,8 @@ export const AIStudioModal: React.FC<AIStudioModalProps> = ({
               )}
 
               {/* Watermark Ribbon */}
-              <div className="absolute top-3 left-3 px-2 py-1 rounded bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-bold text-purple-300 flex items-center gap-1">
-                <Sparkles className="w-3 h-3 text-purple-400" />
+              <div className="absolute top-3 left-3 px-2 py-1 rounded bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-bold text-[#F2C4B7] flex items-center gap-1">
+                <Sparkles className="w-3 h-3 text-[#D49B8B]" />
                 <span>{selectedFilter.name}</span>
               </div>
 
@@ -191,7 +191,7 @@ export const AIStudioModal: React.FC<AIStudioModalProps> = ({
                 onClick={() => fileInputRef.current?.click()}
                 className="absolute bottom-3 right-3 px-3 py-1.5 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-white text-[11px] font-semibold border border-white/20 backdrop-blur-md flex items-center gap-1.5 shadow-md active:scale-95 transition-all"
               >
-                <Upload className="w-3.5 h-3.5 text-purple-400" />
+                <Upload className="w-3.5 h-3.5 text-[#D49B8B]" />
                 <span>Upload Media</span>
               </button>
               <input
@@ -214,7 +214,7 @@ export const AIStudioModal: React.FC<AIStudioModalProps> = ({
                   }}
                   className={`px-2.5 py-1 text-[11px] font-medium rounded-lg border transition-all shrink-0 ${
                     currentMedia.name === m.name && !customFileUrl
-                      ? 'bg-purple-900/60 border-purple-500 text-purple-200 shadow-xs'
+                      ? 'bg-[#D49B8B]/20 border-[#D49B8B] text-[#F2C4B7] shadow-xs'
                       : 'bg-slate-900 border-slate-800 text-slate-400 hover:text-white'
                   }`}
                 >
@@ -231,7 +231,7 @@ export const AIStudioModal: React.FC<AIStudioModalProps> = ({
               <button
                 onClick={() => setMediaType('video')}
                 className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                  mediaType === 'video' ? 'bg-purple-600 text-white shadow-xs' : 'text-slate-400 hover:text-white'
+                  mediaType === 'video' ? 'bg-gradient-to-r from-[#D49B8B] to-[#C27E6E] text-[#0A0C10] font-bold shadow-xs' : 'text-slate-400 hover:text-white'
                 }`}
               >
                 <Video className="w-3.5 h-3.5" />
@@ -240,7 +240,7 @@ export const AIStudioModal: React.FC<AIStudioModalProps> = ({
               <button
                 onClick={() => setMediaType('picture')}
                 className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                  mediaType === 'picture' ? 'bg-purple-600 text-white shadow-xs' : 'text-slate-400 hover:text-white'
+                  mediaType === 'picture' ? 'bg-gradient-to-r from-[#D49B8B] to-[#C27E6E] text-[#0A0C10] font-bold shadow-xs' : 'text-slate-400 hover:text-white'
                 }`}
               >
                 <Image className="w-3.5 h-3.5" />
@@ -252,7 +252,7 @@ export const AIStudioModal: React.FC<AIStudioModalProps> = ({
             <div>
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs font-bold text-slate-200">AI Visual Filters</span>
-                <span className="text-[11px] text-purple-400">Share posts to unlock Premium 4D FX</span>
+                <span className="text-[11px] text-[#D49B8B]">Share posts to unlock Premium 4D FX</span>
               </div>
               <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
                 {AI_FILTERS.map((filter) => {
@@ -270,7 +270,7 @@ export const AIStudioModal: React.FC<AIStudioModalProps> = ({
                       }}
                       className={`relative p-2.5 rounded-xl border text-left flex flex-col justify-between transition-all group ${
                         isSelected
-                          ? 'bg-purple-950/70 border-purple-500 ring-1 ring-purple-500/50 shadow-md'
+                          ? 'bg-[#D49B8B]/15 border-[#D49B8B] ring-1 ring-[#D49B8B]/50 shadow-md'
                           : 'bg-slate-950/70 border-slate-800 hover:border-slate-700'
                       }`}
                     >
@@ -282,7 +282,7 @@ export const AIStudioModal: React.FC<AIStudioModalProps> = ({
                         {!unlocked && (
                           <Lock className="w-3 h-3 text-amber-400 group-hover:scale-110 transition-transform" />
                         )}
-                        {isSelected && <Check className="w-3 h-3 text-purple-300" />}
+                        {isSelected && <Check className="w-3 h-3 text-[#D49B8B]" />}
                       </div>
                       <span className="text-[11px] font-semibold text-slate-200 line-clamp-1">{filter.name}</span>
                       <span className="text-[9px] text-slate-500 line-clamp-1 mt-0.5">
@@ -295,16 +295,16 @@ export const AIStudioModal: React.FC<AIStudioModalProps> = ({
             </div>
 
             {/* AI Caption & Viral Hook Generator */}
-            <div className="p-4 rounded-xl bg-slate-950/80 border border-purple-500/30 space-y-3">
+            <div className="p-4 rounded-xl bg-slate-950/80 border border-[#D49B8B]/30 space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-1.5">
-                  <Sparkles className="w-4 h-4 text-purple-400" />
+                  <Sparkles className="w-4 h-4 text-[#D49B8B]" />
                   <span className="text-xs font-bold text-white">AI Viral Strategist & Hook Generator</span>
                 </div>
                 <button
                   onClick={handleGenerateAI}
                   disabled={isGeneratingAI}
-                  className="px-3 py-1 rounded-lg bg-gradient-to-r from-purple-600 to-fuchsia-600 hover:from-purple-500 hover:to-fuchsia-500 disabled:opacity-50 text-white text-xs font-semibold flex items-center gap-1.5 shadow-sm active:scale-95 transition-all"
+                  className="px-3 py-1 rounded-lg bg-gradient-to-r from-[#D49B8B] to-[#C27E6E] hover:brightness-110 disabled:opacity-50 text-[#0A0C10] text-xs font-extrabold flex items-center gap-1.5 shadow-sm active:scale-95 transition-all"
                 >
                   {isGeneratingAI ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Wand2 className="w-3.5 h-3.5" />}
                   <span>{isGeneratingAI ? 'Thinking...' : 'Generate with AI'}</span>
@@ -318,7 +318,7 @@ export const AIStudioModal: React.FC<AIStudioModalProps> = ({
                   value={topic}
                   onChange={(e) => setTopic(e.target.value)}
                   placeholder="e.g., Cyberpunk fashion haul, Tokyo midnight drive..."
-                  className="w-full h-8 px-3 rounded-lg bg-slate-900 border border-slate-800 text-xs text-white placeholder-slate-500 focus:outline-hidden focus:border-purple-500"
+                  className="w-full h-8 px-3 rounded-lg bg-slate-900 border border-slate-800 text-xs text-white placeholder-slate-500 focus:outline-hidden focus:border-[#D49B8B]"
                 />
               </div>
 
@@ -328,19 +328,19 @@ export const AIStudioModal: React.FC<AIStudioModalProps> = ({
                   value={caption}
                   onChange={(e) => setCaption(e.target.value)}
                   rows={2}
-                  className="w-full p-2.5 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-200 placeholder-slate-500 focus:outline-hidden focus:border-purple-500 resize-none"
+                  className="w-full p-2.5 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-200 placeholder-slate-500 focus:outline-hidden focus:border-[#D49B8B] resize-none"
                 />
               </div>
 
               {/* AI Insights Card if generated */}
               {aiResult && (
-                <div className="p-2.5 rounded-lg bg-purple-950/40 border border-purple-500/30 text-[11px] space-y-1">
-                  <div className="flex items-center justify-between text-purple-300 font-semibold">
+                <div className="p-2.5 rounded-lg bg-[#D49B8B]/10 border border-[#D49B8B]/30 text-[11px] space-y-1">
+                  <div className="flex items-center justify-between text-[#F2C4B7] font-semibold">
                     <span>Algorithm Virality Score: {aiResult.viralityScore}/100</span>
                     <span className="text-emerald-400 font-mono">Top 5% Discovery</span>
                   </div>
                   <p className="text-slate-300">💡 <span className="font-semibold text-white">Hook Tip:</span> {aiResult.hookTip}</p>
-                  <p className="text-purple-200">🎵 <span className="font-semibold text-white">Music Match:</span> {aiResult.musicMood}</p>
+                  <p className="text-[#F2C4B7]">🎵 <span className="font-semibold text-white">Music Match:</span> {aiResult.musicMood}</p>
                 </div>
               )}
             </div>
@@ -355,7 +355,7 @@ export const AIStudioModal: React.FC<AIStudioModalProps> = ({
               </button>
               <button
                 onClick={handlePublish}
-                className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-600 hover:opacity-95 text-white text-xs font-bold flex items-center gap-2 shadow-lg shadow-purple-600/30 active:scale-98 transition-all"
+                className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#D49B8B] via-[#E8B4A6] to-[#C27E6E] hover:brightness-110 text-[#0A0C10] text-xs font-extrabold flex items-center gap-2 shadow-lg shadow-[#D49B8B]/25 active:scale-98 transition-all"
               >
                 <span>Publish to LikeTop Feed</span>
                 <ArrowRight className="w-3.5 h-3.5" />

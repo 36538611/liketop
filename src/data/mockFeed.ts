@@ -207,7 +207,7 @@ export const INITIAL_POSTS: VideoPost[] = [
       id: 'creator_dj',
       username: 'neon_club_dj',
       displayName: 'DJ Pulse X',
-      avatar: '/src/assets/images/liketop_app_logo_1792906339915.jpg',
+      avatar: '/assets/aistudio/1792908458825_0b55711a.jpg',
       isVerified: true,
     },
     videoUrl: '',

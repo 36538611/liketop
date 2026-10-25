@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronUp, ChevronDown, Sparkles, HardDrive, ShieldCheck, Flame, TrendingUp, Info } from 'lucide-react';
+import { ChevronUp, ChevronDown, Sparkles, HardDrive, ShieldCheck, Flame, TrendingUp, Info, Download } from 'lucide-react';
 import { Navbar } from './components/Navbar';
 import { VideoPlayer } from './components/VideoPlayer';
 import { ActionRail } from './components/ActionRail';
@@ -11,6 +11,9 @@ import { VaultSecurityModal } from './components/VaultSecurityModal';
 import { ProfileDrawer } from './components/ProfileDrawer';
 import { ExploreView } from './components/ExploreView';
 import { LiveStreamModal } from './components/LiveStreamModal';
+import { DownloadApkModal } from './components/DownloadApkModal';
+import { ApkPromptBanner } from './components/ApkPromptBanner';
+import { LiveSplashIntro } from './components/LiveSplashIntro';
 import { BottomNav } from './components/BottomNav';
 import { INITIAL_POSTS, INITIAL_USER, MOCK_COMMENTS, AI_FILTERS } from './data/mockFeed';
 import { VideoPost, User, Comment } from './types';
@@ -46,7 +49,8 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<'following' | 'foryou' | 'live'>('foryou');
   const [activeView, setActiveView] = useState<'home' | 'explore' | 'inbox' | 'profile'>('home');
 
-  // Modals state
+  // Modals & Splash state
+  const [isLiveSplashOpen, setIsLiveSplashOpen] = useState(true);
   const [isCommentOpen, setIsCommentOpen] = useState(false);
   const [isShareOpen, setIsShareOpen] = useState(false);
   const [isAIStudioOpen, setIsAIStudioOpen] = useState(false);
@@ -55,6 +59,7 @@ export default function App() {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isExploreOpen, setIsExploreOpen] = useState(false);
   const [isLiveOpen, setIsLiveOpen] = useState(false);
+  const [isDownloadApkOpen, setIsDownloadApkOpen] = useState(false);
 
   // Toast banner
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -316,7 +321,7 @@ export default function App() {
     <div
       ref={containerRef}
       onWheel={handleWheel}
-      className="relative w-screen h-screen bg-[#070a12] text-slate-100 overflow-hidden select-none flex flex-col font-sans"
+      className="relative w-screen h-screen bg-[#08090D] text-slate-100 overflow-hidden select-none flex flex-col font-sans"
     >
       {/* Top Navigation Bar */}
       <Navbar
@@ -332,13 +337,15 @@ export default function App() {
         onOpenSearch={() => setIsExploreOpen(true)}
         onOpenVault={() => setIsVaultOpen(true)}
         onOpenAuth={() => setIsAuthOpen(true)}
+        onOpenDownloadApk={() => setIsDownloadApkOpen(true)}
+        onReplayLiveIntro={() => setIsLiveSplashOpen(true)}
         user={currentUser}
       />
 
       {/* Floating Toast Notification */}
       {toastMessage && (
-        <div className="fixed top-18 left-1/2 -translate-x-1/2 z-50 px-4 py-2.5 rounded-2xl bg-purple-950/90 border border-purple-400 text-white text-xs md:text-sm font-semibold shadow-2xl flex items-center gap-2 animate-bounce backdrop-blur-md">
-          <Sparkles className="w-4 h-4 text-fuchsia-300 shrink-0" />
+        <div className="fixed top-18 left-1/2 -translate-x-1/2 z-50 px-4 py-2.5 rounded-2xl bg-[#0C0E15]/95 border border-[#D49B8B]/60 text-white text-xs md:text-sm font-semibold shadow-[0_0_25px_rgba(212,155,139,0.3)] flex items-center gap-2 animate-bounce backdrop-blur-md">
+          <Sparkles className="w-4 h-4 text-[#F2C4B7] shrink-0" />
           <span>{toastMessage}</span>
         </div>
       )}
@@ -346,34 +353,34 @@ export default function App() {
       {/* Main Container: 1440px desktop balanced layout & full mobile presence */}
       <main className="relative flex-1 w-full h-full flex items-center justify-center overflow-hidden pt-14 md:pt-16 pb-16 md:pb-0">
         {/* Desktop Left Side Quick Bar (on larger screens) */}
-        <aside className="hidden xl:flex flex-col justify-between w-72 h-[82vh] p-6 rounded-3xl bg-slate-950/50 border border-purple-500/20 backdrop-blur-md mr-8 text-xs text-slate-400">
+        <aside className="hidden xl:flex flex-col justify-between w-72 h-[82vh] p-6 rounded-3xl bg-slate-950/60 border border-[#D49B8B]/20 backdrop-blur-md mr-8 text-xs text-slate-400">
           <div className="space-y-5">
             {/* User Profile summary card */}
             <div
               onClick={() => setIsProfileOpen(true)}
-              className="flex items-center gap-3 p-3 rounded-2xl bg-slate-900/80 border border-purple-500/20 hover:border-purple-500/50 cursor-pointer transition-all group"
+              className="flex items-center gap-3 p-3 rounded-2xl bg-slate-900/80 border border-[#D49B8B]/20 hover:border-[#D49B8B]/50 cursor-pointer transition-all group"
             >
               <img
                 src={currentUser?.avatar || '/src/assets/images/avatar_cyber_creator_1792906341940.jpg'}
                 alt="Profile"
-                className="w-11 h-11 rounded-full object-cover ring-2 ring-purple-500/50 group-hover:scale-105 transition-transform"
+                className="w-11 h-11 rounded-full object-cover ring-2 ring-[#D49B8B]/50 group-hover:scale-105 transition-transform"
               />
               <div className="flex-1 truncate">
-                <span className="font-bold text-white text-sm block truncate group-hover:text-purple-300">
+                <span className="font-bold text-white text-sm block truncate group-hover:text-[#F2C4B7]">
                   {currentUser?.displayName || 'Creator'}
                 </span>
-                <span className="text-[11px] text-purple-400">@{currentUser?.username || 'liketop'}</span>
+                <span className="text-[11px] text-[#D49B8B]">@{currentUser?.username || 'liketop'}</span>
               </div>
             </div>
 
             {/* Engagement & Follower Multiplier */}
-            <div className="p-3.5 rounded-2xl bg-gradient-to-br from-purple-950/60 to-slate-950 border border-purple-500/30 space-y-2">
+            <div className="p-3.5 rounded-2xl bg-gradient-to-br from-[#D49B8B]/15 to-[#0C0E15] border border-[#D49B8B]/30 space-y-2">
               <div className="flex items-center justify-between text-white font-bold">
                 <span className="flex items-center gap-1.5">
                   <Flame className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
                   <span>{currentUser?.streakDays || 4}-Day Streak</span>
                 </span>
-                <span className="text-purple-300 font-mono">{currentUser?.algorithmMultiplier || 1.5}x Boost</span>
+                <span className="text-[#F2C4B7] font-mono">{currentUser?.algorithmMultiplier || 1.5}x Boost</span>
               </div>
               <p className="text-[11px] text-slate-300 leading-tight">
                 Engage daily with likes & shares to automatically trigger follower discovery placement!
@@ -383,11 +390,11 @@ export default function App() {
             {/* Bonus Cloud Vault Strip */}
             <div
               onClick={() => setIsVaultOpen(true)}
-              className="p-3.5 rounded-2xl bg-slate-900/70 border border-purple-500/30 hover:border-purple-500 cursor-pointer transition-all space-y-1.5"
+              className="p-3.5 rounded-2xl bg-slate-900/70 border border-[#D49B8B]/30 hover:border-[#D49B8B] cursor-pointer transition-all space-y-1.5"
             >
               <div className="flex items-center justify-between text-white font-bold">
-                <span className="flex items-center gap-1.5 text-purple-300">
-                  <HardDrive className="w-3.5 h-3.5" />
+                <span className="flex items-center gap-1.5 text-[#F2C4B7]">
+                  <HardDrive className="w-3.5 h-3.5 text-[#D49B8B]" />
                   <span>Cloud Vault</span>
                 </span>
                 <span className="font-mono text-white">
@@ -395,9 +402,28 @@ export default function App() {
                 </span>
               </div>
               <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
-                <div className="h-full bg-gradient-to-r from-purple-500 to-fuchsia-400 w-2/5" />
+                <div className="h-full bg-gradient-to-r from-[#D49B8B] to-[#F2C4B7] w-2/5" />
               </div>
               <span className="text-[10px] text-slate-400 block">+500MB bonus storage per share</span>
+            </div>
+
+            {/* Install LikeTop Android APK Card */}
+            <div
+              onClick={() => setIsDownloadApkOpen(true)}
+              className="p-3.5 rounded-2xl bg-gradient-to-r from-[#D49B8B]/20 via-[#0C0E15] to-[#D49B8B]/20 border border-[#D49B8B]/40 hover:border-[#D49B8B] cursor-pointer transition-all space-y-1.5 shadow-md"
+            >
+              <div className="flex items-center justify-between text-white font-bold">
+                <span className="flex items-center gap-1.5 text-[#F2C4B7]">
+                  <Download className="w-3.5 h-3.5 text-[#D49B8B]" />
+                  <span>Download APK</span>
+                </span>
+                <span className="text-[10px] font-mono px-1.5 py-0.2 rounded-full bg-emerald-500/20 text-emerald-300 font-semibold">
+                  v2.4
+                </span>
+              </div>
+              <p className="text-[11px] text-slate-300 leading-tight">
+                Scan QR code or direct download for Android devices
+              </p>
             </div>
 
             {/* Trending tags */}
@@ -412,7 +438,7 @@ export default function App() {
                     onClick={() => {
                       setIsExploreOpen(true);
                     }}
-                    className="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-purple-950 text-slate-300 hover:text-purple-200 border border-slate-800 transition-colors text-[11px]"
+                    className="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-[#D49B8B]/20 text-slate-300 hover:text-[#F2C4B7] border border-slate-800 transition-colors text-[11px]"
                   >
                     {tag}
                   </button>
@@ -424,21 +450,21 @@ export default function App() {
           {/* Keyboard navigation hints */}
           <div className="p-3 rounded-xl bg-slate-900/40 border border-slate-800/80 text-[11px] space-y-1">
             <div className="text-slate-300 font-semibold mb-1">Keyboard Controls</div>
-            <div className="flex justify-between"><span>Next/Prev Video:</span> <span className="font-mono text-purple-300">↓ / ↑ or J / K</span></div>
-            <div className="flex justify-between"><span>Double tap / Like:</span> <span className="font-mono text-purple-300">L</span></div>
-            <div className="flex justify-between"><span>Open Comments:</span> <span className="font-mono text-purple-300">C</span></div>
-            <div className="flex justify-between"><span>Share & Earn:</span> <span className="font-mono text-purple-300">S</span></div>
+            <div className="flex justify-between"><span>Next/Prev Video:</span> <span className="font-mono text-[#F2C4B7]">↓ / ↑ or J / K</span></div>
+            <div className="flex justify-between"><span>Double tap / Like:</span> <span className="font-mono text-[#F2C4B7]">L</span></div>
+            <div className="flex justify-between"><span>Open Comments:</span> <span className="font-mono text-[#F2C4B7]">C</span></div>
+            <div className="flex justify-between"><span>Share & Earn:</span> <span className="font-mono text-[#F2C4B7]">S</span></div>
           </div>
         </aside>
 
         {/* Center: Vertical TikTok-Style Video Frame */}
-        <div className="relative w-full h-full md:w-[420px] md:h-[84vh] md:max-h-[820px] md:rounded-3xl overflow-hidden md:border md:border-purple-500/30 md:shadow-2xl md:shadow-purple-950/40 bg-slate-950 flex items-center justify-center">
+        <div className="relative w-full h-full md:w-[420px] md:h-[84vh] md:max-h-[820px] md:rounded-3xl overflow-hidden md:border md:border-[#D49B8B]/30 md:shadow-2xl md:shadow-[#D49B8B]/15 bg-slate-950 flex items-center justify-center">
           {displayedPosts.length === 0 ? (
             <div className="text-center p-8 text-slate-400">
               <p className="text-base font-semibold">No posts in this feed yet.</p>
               <button
                 onClick={() => setActiveTab('foryou')}
-                className="mt-3 px-4 py-2 rounded-xl bg-purple-600 text-white text-xs font-semibold"
+                className="mt-3 px-4 py-2 rounded-xl bg-gradient-to-r from-[#D49B8B] to-[#C27E6E] text-[#0A0C10] font-extrabold text-xs"
               >
                 Switch to For You Feed
               </button>
@@ -476,7 +502,7 @@ export default function App() {
             <button
               onClick={goToPrev}
               disabled={activeIndex === 0}
-              className="w-10 h-10 rounded-full bg-slate-900/90 hover:bg-purple-900 disabled:opacity-30 disabled:hover:bg-slate-900 text-white flex items-center justify-center border border-purple-500/30 transition-all shadow-md active:scale-95"
+              className="w-10 h-10 rounded-full bg-slate-900/90 hover:bg-[#D49B8B]/30 disabled:opacity-30 disabled:hover:bg-slate-900 text-white flex items-center justify-center border border-[#D49B8B]/30 transition-all shadow-md active:scale-95 cursor-pointer"
               title="Previous video (Up Arrow)"
             >
               <ChevronUp className="w-5 h-5" />
@@ -484,7 +510,7 @@ export default function App() {
             <button
               onClick={goToNext}
               disabled={activeIndex === displayedPosts.length - 1}
-              className="w-10 h-10 rounded-full bg-slate-900/90 hover:bg-purple-900 disabled:opacity-30 disabled:hover:bg-slate-900 text-white flex items-center justify-center border border-purple-500/30 transition-all shadow-md active:scale-95"
+              className="w-10 h-10 rounded-full bg-slate-900/90 hover:bg-[#D49B8B]/30 disabled:opacity-30 disabled:hover:bg-slate-900 text-white flex items-center justify-center border border-[#D49B8B]/30 transition-all shadow-md active:scale-95 cursor-pointer"
               title="Next video (Down Arrow)"
             >
               <ChevronDown className="w-5 h-5" />
@@ -493,10 +519,10 @@ export default function App() {
         </div>
 
         {/* Desktop Right Side Quick Actions & AI Studio Spotlight */}
-        <aside className="hidden 2xl:flex flex-col justify-between w-80 h-[82vh] p-6 rounded-3xl bg-slate-950/50 border border-purple-500/20 backdrop-blur-md ml-8 text-xs text-slate-400">
+        <aside className="hidden 2xl:flex flex-col justify-between w-80 h-[82vh] p-6 rounded-3xl bg-slate-950/60 border border-[#D49B8B]/20 backdrop-blur-md ml-8 text-xs text-slate-400">
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-purple-400" />
+              <Sparkles className="w-4 h-4 text-[#D49B8B]" />
               <h3 className="text-sm font-bold text-white">Free AI Creative Studio</h3>
             </div>
             <p className="text-xs text-slate-300 leading-relaxed">
@@ -505,7 +531,7 @@ export default function App() {
 
             <button
               onClick={() => setIsAIStudioOpen(true)}
-              className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-purple-600 via-fuchsia-600 to-indigo-600 hover:opacity-95 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-purple-600/30 active:scale-98 transition-all"
+              className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-[#D49B8B] via-[#E8B4A6] to-[#C27E6E] hover:brightness-110 text-[#0A0C10] font-extrabold text-xs flex items-center justify-center gap-2 shadow-lg shadow-[#D49B8B]/25 active:scale-98 transition-all cursor-pointer"
             >
               <Sparkles className="w-4 h-4" />
               <span>Launch Free AI Studio</span>
@@ -514,7 +540,7 @@ export default function App() {
             {/* High-Level Security Card */}
             <div
               onClick={() => setIsVaultOpen(true)}
-              className="p-4 rounded-2xl bg-slate-900/80 border border-purple-500/30 hover:border-purple-400 cursor-pointer transition-all space-y-2 mt-4"
+              className="p-4 rounded-2xl bg-slate-900/80 border border-[#D49B8B]/30 hover:border-[#D49B8B] cursor-pointer transition-all space-y-2 mt-4"
             >
               <div className="flex items-center gap-2 text-emerald-400 font-bold">
                 <ShieldCheck className="w-4 h-4" />
@@ -523,17 +549,17 @@ export default function App() {
               <p className="text-[11px] text-slate-300">
                 All passwords, credentials, and user data are encrypted with PBKDF2-SHA256 (100,000 iterations).
               </p>
-              <span className="text-[10px] text-purple-300 font-semibold block">Click to inspect security audit →</span>
+              <span className="text-[10px] text-[#F2C4B7] font-semibold block">Click to inspect security audit →</span>
             </div>
 
             {/* Viral Share Perk */}
             <div
               onClick={() => setIsShareOpen(true)}
-              className="p-4 rounded-2xl bg-gradient-to-r from-purple-950/60 to-indigo-950/60 border border-purple-500/30 hover:border-purple-400 cursor-pointer transition-all space-y-1.5"
+              className="p-4 rounded-2xl bg-gradient-to-r from-[#D49B8B]/15 to-[#0C0E15] border border-[#D49B8B]/30 hover:border-[#D49B8B] cursor-pointer transition-all space-y-1.5"
             >
               <div className="flex items-center justify-between text-white font-bold">
                 <span>Viral Share Rewards</span>
-                <span className="text-fuchsia-300 font-mono">+500MB</span>
+                <span className="text-[#F2C4B7] font-mono">+500MB</span>
               </div>
               <p className="text-[11px] text-slate-300">
                 Share posts to unlock Premium 4D Hologram filters and permanent bonus cloud vault storage!
@@ -541,8 +567,9 @@ export default function App() {
             </div>
           </div>
 
-          <div className="text-[11px] text-slate-500 text-center">
-            LikeTop © 2026 · Built with Vibrant Purple & Deep Navy
+          <div className="text-[11px] text-slate-500 text-center space-y-0.5">
+            <p className="font-semibold text-[#D49B8B]">LikeTop · The future of the universe</p>
+            <p className="text-[10px] text-slate-600">Obsidian & Metallic Rose Gold Edition</p>
           </div>
         </aside>
       </main>
@@ -641,6 +668,23 @@ export default function App() {
       <LiveStreamModal
         isOpen={isLiveOpen}
         onClose={() => setIsLiveOpen(false)}
+      />
+
+      {/* Floating APK Download Banner */}
+      <ApkPromptBanner
+        onOpenDownloadModal={() => setIsDownloadApkOpen(true)}
+      />
+
+      {/* APK & App Download Pop-up Modal */}
+      <DownloadApkModal
+        isOpen={isDownloadApkOpen}
+        onClose={() => setIsDownloadApkOpen(false)}
+      />
+
+      {/* Live Logo Intro Splash Screen when opening LikeTop */}
+      <LiveSplashIntro
+        isOpen={isLiveSplashOpen}
+        onComplete={() => setIsLiveSplashOpen(false)}
       />
     </div>
   );
